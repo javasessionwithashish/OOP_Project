@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import virinchi.model.UserTable;
 
 public class UserControllerImplements implements UserController {
 
@@ -81,6 +84,38 @@ public boolean userExists(String username, String password) {
 			
 	
 	return false;
+}
+
+@Override
+public List<UserTable> allData() {
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/oop2","root","");
+	
+String sql="select * from usertable";
+PreparedStatement pstm =conn.prepareStatement(sql);
+
+ResultSet rs=	pstm.executeQuery();
+while(rs.next())
+{
+	UserTable ut = new UserTable();
+	ut.setId(rs.getInt("id"));
+	ut.setUsername(rs.getString("username"));
+	ut.setPassword(rs.getString("password"));
+	
+	
+	
+}
+
+
+	} catch (ClassNotFoundException | SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	return null;
 }
 
 }

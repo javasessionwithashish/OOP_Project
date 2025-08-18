@@ -14,7 +14,9 @@ import virinchi.controller.UserControllerImplements;
 public class LoginServlet extends HttpServlet {
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+	
+request.getRequestDispatcher("login.jsp").forward(request, response);
+}
 	
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -25,6 +27,12 @@ UserControllerImplements uc = new UserControllerImplements();
 
 if(uc.userExists(username, password)==true)
 {
+request.setAttribute("username",username);	
+//request.setAttribute(attributename, attributevalue);
+//Attributes transfers to the upcoming jsp file as a value set on to
+//the Http Request.
+
+request.setAttribute("userData", );
 request.getRequestDispatcher("home.jsp").forward(request, response);
 }
 else
