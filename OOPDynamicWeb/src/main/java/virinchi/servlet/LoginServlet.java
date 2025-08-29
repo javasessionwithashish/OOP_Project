@@ -32,7 +32,7 @@ request.setAttribute("username",username);
 //Attributes transfers to the upcoming jsp file as a value set on to
 //the Http Request.
 
-request.setAttribute("userData", );
+//request.setAttribute("userData", );
 request.getRequestDispatcher("home.jsp").forward(request, response);
 }
 else
